@@ -1,0 +1,3 @@
+Client ID: 269611565829-u8v9glnkm82ufvujmum3o0djgq8pgfhe.apps.googleusercontent.com
+Client Secret: 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
+

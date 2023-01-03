@@ -1,6 +1,6 @@
-from django.db import models
+from django import forms
 
-class Agendamento(models.Model):
+class AgendamentoForm(forms.Form):
 
     BARBEIROS = (
                 ('Ronaldo', 'Ronaldo'),
@@ -30,14 +30,14 @@ class Agendamento(models.Model):
                 ('20:00', '20:00'),
             )
 
-    nomeCliente = models.CharField(max_length=50)
-    telCliente = models.CharField(max_length=11)
-    barbeiro = models.CharField(max_length=20, choices=BARBEIROS, blank=False, null=False)
-    dataAgendamento = models.DateField()
-    servico = models.CharField(max_length=20, choices=SERVICO, blank=True, null=True)
-    horaAgendamento = models.CharField(max_length=20, choices=HORARIO, blank=False, null=False)
-    compareceu = models.BooleanField(null=True, blank=True)
-    observacoes = models.TextField(null=True, blank=True, max_length=240)
+    nomeCliente = forms.CharField(max_length=50)
+    telCliente = forms.CharField(max_length=11)
+    barbeiro = forms.ChoiceField(choices=BARBEIROS)
+    dataAgendamento = forms.DateField()
+    servico = forms.ChoiceField(choices=SERVICO)
+    horaAgendamento = forms.ChoiceField(choices=HORARIO)
+    compareceu = forms.BooleanField(required=False)
+    observacoes = forms.Textarea()
 
-    def __str__(self):
-        return 'Cliente: '+ self.nomeCliente + ' -  Barbeiro: ' + self.barbeiro
+
+

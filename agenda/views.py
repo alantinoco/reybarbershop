@@ -1,6 +1,32 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import AgendamentoForm
+from .models import Agendamento
 
 def index(request):
+    form = AgendamentoForm()
+
+    context = {
+        'form': form,
+    }
+
+    if request.method == "POST":
+        form = AgendamentoForm(request.POST or None)
+        if form.is_valid():
+            nomeCliente = form.cleaned_data.get('nomeCliente')
+            telCliente = form.cleaned_data.get('telCliente')
+            barbeiro = form.cleaned_data.get('barbeiro')
+            dataAgendamento = form.cleaned_data.get('dataAgendamento')
+            servico = form.cleaned_data.get('servico')
+            horaAgendamento = form.cleaned_data.get('horaAgendamento')
+            Agendamento.objects.create(
+                    nomeCliente = nomeCliente, 
+                    telCliente = telCliente,
+                    barbeiro = barbeiro,
+                    dataAgendamento = dataAgendamento,
+                    servico = servico,
+                    horaAgendamento = horaAgendamento
+                )
+            return redirect('index')
     return render(request, 'agendamento.html')
 
 

@@ -1,7 +1,5 @@
 from django.contrib import admin
-from .models import Barbeiro, Serviço, Agendamento
+from .models import Agendamento
+    
 
-
-admin.site.register(Barbeiro)
-admin.site.register(Serviço)
 admin.site.register(Agendamento)

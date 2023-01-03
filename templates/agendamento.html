@@ -14,45 +14,46 @@
     <h2 class="contact-title">Agende o seu horário</h2>
 </div>
 <div class="col-lg-8">
-    <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+    <form class="form-contact contact_form" action="." method="post">
+        {% csrf_token %}
         <div class="row">
 
             <div class="col-12">
                 <div class="form-group">
-                    <input class="form-control" name="subject" id="subject" type="text" placeholder="Digite seu nome">
+                    <input class="form-control" name="nomeCliente" id="nomeCliente" type="text" placeholder="Digite seu nome">
                 </div>
             </div>
 
             <div class="col-12">
                 <div class="form-group">
-                    <input class="form-control" name="subject" id="subject" type="text" placeholder="Telefone: (99) 99999-9999">
+                    <input class="form-control" name="telCliente" id="telCliente" type="text" placeholder="Telefone: (99) 99999-9999">
                 </div>
             </div>
 
             <div class="col-sm-6">
                 <div class="form-group">
-                    <select name="barbeiros" id="barbeiros">
+                    <select name="barbeiro" id="barbeiro">
                         <option value="none">Escolha o seu barbeiro</option>
-                        <option value="ronaldo">Ronaldo</option>
-                        <option value="vagner">Vagner</option>
-                        <option value="gabriel">Gabriel</option>
+                        <option value="Ronaldo">Ronaldo</option>
+                        <option value="Vagner">Vagner</option>
+                        <option value="Gabriel">Gabriel</option>
                   </select>
                 </div>
             </div><br><br><br>
 
             <div class="col-sm-6">
                 <div class="form-group">
-                    <input class="form-control valid" name="date" id="date" type="date">
+                    <input class="form-control valid" name="dataAgendamento" id="dataAgendamento" type="date">
                 </div>
             </div>
 
             <div class="col-sm-6">
                 <div class="form-group">
-                    <select name="barbeiros" id="barbeiros">
+                    <select name="servico" id="servico">
                         <option value="none">Escolha o serviço desejado</option>
                         <option value="corte">Corte</option>
                         <option value="barba">Barba</option>
-                        <option value="corteebarba">Corte e barba</option>
+                        <option value="corte + barba">Corte e barba</option>
                         <option value="pezinho">Pézinho</option>
                   </select>
                 </div>
@@ -61,7 +62,7 @@
 
             <div class="col-sm-6">
                 <div class="form-group">
-                    <select name="horario" id="horario">
+                    <select name="horaAgendamento" id="horaAgendamento">
                         <option value="escolha">Escolha o horário desejado</option>
                         <option value="10:00">10:00</option>
                         <option value="11:00">11:00</option>

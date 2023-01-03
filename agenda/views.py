@@ -6,3 +6,14 @@ def index(request):
 
 def tabelaDePrecos(request):
     return render(request, 'tabelaDePrecos.html')
+
+def agendaRonaldo(request):
+    return render(request, 'ronaldo.html')
+
+
+def agendaVagner(request):
+    return render(request, 'vagner.html')
+
+
+def agendaGabriel(request):
+    return render(request, 'gabriel.html')

@@ -4,4 +4,7 @@ from . import views
 urlpatterns = [
     path("", views.index, name="index"),
     path("precos", views.tabelaDePrecos, name="precos"),
+    path("agenda/ronaldo", views.agendaRonaldo, name="ronaldo"),
+    path("agenda/vagner", views.agendaVagner, name="vagner"),
+    path("agenda/gabriel", views.agendaGabriel, name="gabriel"),
 ]

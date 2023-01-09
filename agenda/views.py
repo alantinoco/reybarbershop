@@ -1,13 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import AgendamentoForm
 from .models import Agendamento
+from .googleCalendar import calendar
 
 def index(request):
     form = AgendamentoForm()
-
-    context = {
-        'form': form,
-    }
 
     if request.method == "POST":
         form = AgendamentoForm(request.POST or None)
@@ -18,6 +15,7 @@ def index(request):
             dataAgendamento = form.cleaned_data.get('dataAgendamento')
             servico = form.cleaned_data.get('servico')
             horaAgendamento = form.cleaned_data.get('horaAgendamento')
+            print(dict(request.POST))
             Agendamento.objects.create(
                     nomeCliente = nomeCliente, 
                     telCliente = telCliente,
@@ -26,6 +24,8 @@ def index(request):
                     servico = servico,
                     horaAgendamento = horaAgendamento
                 )
+            dataAgendamentoToCalendar = str(dataAgendamento)
+            calendar.add_event(nomeCliente, telCliente, barbeiro, servico, dataAgendamentoToCalendar, horaAgendamento)
             return redirect('index')
     return render(request, 'agendamento.html')
 

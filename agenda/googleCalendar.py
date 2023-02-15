@@ -50,8 +50,6 @@ class GoogleCalendar:
                 },
             }
         
-        print(event['start'])
-
         if event.get('location') == "Ronaldo":
             calendar_id = ronaldo
             event = self.service.events().insert(calendarId=calendar_id, body=event).execute()

@@ -41,6 +41,9 @@ def index(request):
     return render(request, 'agendamento.html')
 
 
+def consultaAgendamento(request):
+    return render(request, 'consultaAgendamento.html')
+
 def alterar_excluir(request):
     return render(request, 'tabelaDePrecos.html')
 

@@ -33,7 +33,10 @@ def index(request):
                     horaAgendamento = horaAgendamento
                 )
                 dataAgendamentoToCalendar = str(dataAgendamento)
-                calendar.add_event(nomeCliente, telCliente, barbeiro, servico, dataAgendamentoToCalendar, horaAgendamento)
+                try:
+                    calendar.add_event(nomeCliente, telCliente, barbeiro, servico, dataAgendamentoToCalendar, horaAgendamento)
+                except:
+                    messages.error(request, ("Verifique as opções selecionadas"))
                 return redirect('index')
     return render(request, 'agendamento.html')
 

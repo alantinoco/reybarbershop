@@ -18,8 +18,9 @@ def index(request):
             servico = form.cleaned_data.get('servico')
             horaAgendamento = form.cleaned_data.get('horaAgendamento')
             
-            agendamentoExiste = Agendamento.objects.filter(dataAgendamento=dataAgendamento,horaAgendamento=horaAgendamento)
-            
+            agendamentoExiste = Agendamento.objects.filter(telCliente=telCliente, dataAgendamento=dataAgendamento)
+            print(agendamentoExiste)
+
             if agendamentoExiste:
                 messages.error(request, ("Data/Hora já ocupada! Favor checar disponibilidade em Agenda Dos Barbeiros."))
                 return redirect('index')
@@ -33,10 +34,7 @@ def index(request):
                     horaAgendamento = horaAgendamento
                 )
                 dataAgendamentoToCalendar = str(dataAgendamento)
-                try:
-                    calendar.add_event(nomeCliente, telCliente, barbeiro, servico, dataAgendamentoToCalendar, horaAgendamento)
-                except:
-                    messages.error(request, ("Verifique as opções selecionadas"))
+                calendar.add_event(nomeCliente, telCliente, barbeiro, servico, dataAgendamentoToCalendar, horaAgendamento)
                 return redirect('index')
     return render(request, 'agendamento.html')
 

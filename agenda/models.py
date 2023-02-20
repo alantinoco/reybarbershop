@@ -40,4 +40,4 @@ class Agendamento(models.Model):
     observacoes = models.TextField(null=True, blank=True, max_length=240)
 
     def __str__(self):
-        return 'Cliente: '+ self.nomeCliente + ' -  Barbeiro: ' + self.barbeiro
+        return 'Agendamento confirmado para '+ str(self.dataAgendamento)[8:10]+'/'+str(self.dataAgendamento)[5:7] + ' as ' + str(self.horaAgendamento) + ' com o barbeiro ' + self.barbeiro

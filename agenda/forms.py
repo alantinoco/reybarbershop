@@ -41,3 +41,6 @@ class AgendamentoForm(forms.Form):
 
 
 
+class ConsultaAgendamentoForm(forms.Form):
+    telCliente = forms.CharField(max_length=11)
+    dataAgendamento = forms.DateField()

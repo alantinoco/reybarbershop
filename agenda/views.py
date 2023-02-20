@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import AgendamentoForm
+from .forms import AgendamentoForm, ConsultaAgendamentoForm
 from .models import Agendamento
 from .googleCalendar import calendar
 from django.contrib import messages
@@ -41,7 +41,22 @@ def index(request):
     return render(request, 'agendamento.html')
 
 
+def visualizarAgendamento(request, id):
+    agendamento = Agendamento.objects.filter(id=id)
+    return render(request, 'consultaAgendamento.html', {'agendamento' : agendamento})
+
 def consultaAgendamento(request):
+    form = ConsultaAgendamentoForm()
+    if request.method == "POST":
+        form = ConsultaAgendamentoForm(request.POST or None)
+        if form.is_valid():
+            telCliente = form.cleaned_data.get('telCliente')
+            dataAgendamento = form.cleaned_data.get('dataAgendamento')
+            agendamentoBuscado = Agendamento.objects.filter(dataAgendamento=dataAgendamento,telCliente=telCliente)
+            if agendamentoBuscado:
+                return render(request, 'visualizarAgendamento.html', {'agendamentoBuscado': agendamentoBuscado})
+            else:
+                messages.error(request, ("Nenhum agendamento encontrado"))
     return render(request, 'consultaAgendamento.html')
 
 def alterar_excluir(request):

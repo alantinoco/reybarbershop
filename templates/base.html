@@ -58,19 +58,18 @@
                                                     <li><a href="{% url 'gabriel' %}">Gabriel</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="https://www.instagram.com/reybarbershop113/">Fotos</a></li>
                                             <li><a href="{% url 'index' %}">Agendar atendimento</a></li>
-                                            <li><a href="{% url 'consultaAgendamento' %}">Remarcar / cancelar</a></li>
+                                            <li><a href="{% url 'index' %}">Seu agendamento</a>
+                                                <ul class="submenu">
+                                                    <li><a href="{% url 'consultaAgendamento' %}">Consultar</a></li>
+                                                    <li><a href="{% url 'consultaAgendamento' %}">Remarcar</a></li>
+                                                    <li><a href="{% url 'consultaAgendamento' %}">Cancelar</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="https://www.instagram.com/reybarbershop113/">Fotos</a></li>
                                         </ul>
                                     </nav>
-                                </div>
-
-                                <!-- estilo antigo 
-                                    <div class="header-right-btn f-right d-none d-lg-block ml-30">
-                                    <a href="from.html" class="btn header-btn">Agende o seu atendimento</a>
-                                </div>
-                                -->
-                                
+                                </div> 
                             </div>
                         </div>   
                         <!-- Mobile Menu -->

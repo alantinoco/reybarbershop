@@ -1,17 +1,5 @@
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
-import pprint
-
-
-{   'csrfmiddlewaretoken': ['T0dcE9MNVhl7p1oVwcrOkQxsVty6C0P5h70TSTV7MtzReVC3D0jClS4nQqbdVENM'], 
-    'nomeCliente': ['Jon Snow'], 
-    'telCliente': ['21999999999'], 
-    'barbeiro': ['Ronaldo'], 
-    'dataAgendamento': ['2023-01-10'], 
-    'servico': ['corte'], 
-    'horaAgendamento': ['12:00']
-}
-
 
 
 class GoogleCalendar:
@@ -64,38 +52,12 @@ class GoogleCalendar:
 
 calendar = GoogleCalendar()
 
-# data = '2023-01-11'
-# dataAgendamentoToCalendar = str(data)
-
-
-# calendar.add_event("CR7", "21999999999", "Ronaldo", "corte", dataAgendamentoToCalendar, "10:00")
-
-# List all events
-# events = calendar.service.events().list(calendarId='85b08ccb13cb7c316921c380a39f5e674a16c03964c1040218920def9edcb285@group.calendar.google.com').execute()
-# pprint.pprint(events)
-
-
-#Insert an event
-# event = {
-#     'summary': 'Teste de hoje!!!',
-#     'description': 'Somente um teste ...',
-#     'start': {
-#         'dateTime': '2023-01-10T08:00:00.000Z',
-#         'timeZone': 'America/Sao_Paulo'
-#     },
-#     'end': {
-#         'dateTime': '2023-01-10T08:30:00.000Z',
-#         'timeZone': 'America/Sao_Paulo'
-#     }
-# }
-# event = calendar.service.events().insert(calendarId='85b08ccb13cb7c316921c380a39f5e674a16c03964c1040218920def9edcb285@group.calendar.google.com', body=event).execute()
-# print ('Event created: %s' % (event.get('htmlLink')))
 
 
 # To get an event
 # myEvent = calendar.service.events().get(calendarId='732ef43aa77457cce14ebab35ad9a7caa9b49d3880c08e7db7a48a716a5dc9f6@group.calendar.google.com', eventId='6afq4uf1h0lq7um7oo84nv9ais').execute()
 # print(myEvent['summary']+'\n'+myEvent['description'])
 
-# To delede an event
+# To delete an event
 # calendar.service.events().delete(calendarId='primary', eventId='eventId').execute()
 

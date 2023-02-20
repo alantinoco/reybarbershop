@@ -18,11 +18,9 @@ class GoogleCalendar:
         vagner = "63020750722e60df84491918be7ce325aa0d7b915da68af28d8ac3ebf9b7118b@group.calendar.google.com"
         gabriel = "b74e45caec7ca87af3c27e1c91913a9ae69e44642e62401bdb53b7ba36d162b4@group.calendar.google.com"
         calendar_id= ""
-
-        print(horaAgendamento)
-        
+                
         fimDoAtendimento = horaAgendamento[0:3:1]+'30'
-        print(fimDoAtendimento)
+        
 
         event = {
                 'summary': nomeCliente +" - "+telCliente,

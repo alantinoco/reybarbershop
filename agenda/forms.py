@@ -44,3 +44,16 @@ class AgendamentoForm(forms.Form):
 class ConsultaAgendamentoForm(forms.Form):
     telCliente = forms.CharField(max_length=11)
     dataAgendamento = forms.DateField()
+
+
+class CancelaAgendamentoForm(forms.Form):
+
+    BARBEIROS = (
+                ('Ronaldo', 'Ronaldo'),
+                ('Vagner', 'Vagner'),
+                ('Gabriel', 'Gabriel')
+            )
+
+    telCliente = forms.CharField(max_length=11)
+    barbeiro = forms.ChoiceField(choices=BARBEIROS)
+    dataAgendamento = forms.DateField()

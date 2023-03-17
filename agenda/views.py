@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import AgendamentoForm, ConsultaAgendamentoForm
+from .forms import AgendamentoForm, ConsultaAgendamentoForm, CancelaAgendamentoForm
 from .models import Agendamento
 from .googleCalendar import calendar
 from django.contrib import messages
@@ -18,7 +18,7 @@ def index(request):
             servico = form.cleaned_data.get('servico')
             horaAgendamento = form.cleaned_data.get('horaAgendamento')
             
-            agendamentoExiste = Agendamento.objects.filter(telCliente=telCliente, dataAgendamento=dataAgendamento)
+            agendamentoExiste = Agendamento.objects.filter(telCliente=telCliente, dataAgendamento=dataAgendamento, horaAgendamento=horaAgendamento)
             print(agendamentoExiste)
 
             if agendamentoExiste:
@@ -57,7 +57,34 @@ def consultaAgendamento(request):
                 messages.error(request, ("Nenhum agendamento encontrado"))
     return render(request, 'consultaAgendamento.html')
 
-def alterar_excluir(request):
+def cancelaAgendamento(request):
+    form = CancelaAgendamentoForm()
+    if request.method == "POST":
+        form = CancelaAgendamentoForm(request.POST or None)
+        if form.is_valid():
+            print(form.is_valid())
+            telCliente = form.cleaned_data.get('telCliente')
+            barbeiro = form.cleaned_data.get('barbeiro')
+            dataAgendamento = form.cleaned_data.get('dataAgendamento')
+            dataAgendamentoToCalendar = str(dataAgendamento)
+            calendar.del_event(telCliente, barbeiro ,dataAgendamentoToCalendar)
+
+            print(telCliente)
+            print(barbeiro)
+            print(dataAgendamento)
+            print(dataAgendamentoToCalendar)
+
+            agendamentoParaCancelar = Agendamento.objects.filter(
+                dataAgendamento=dataAgendamento,
+                telCliente=telCliente, 
+                barbeiro=barbeiro
+            )
+            agendamentoParaCancelar.delete()
+            return redirect('index')
+    return render(request, 'cancelaAgendamento.html')
+
+
+    
     return render(request, 'tabelaDePrecos.html')
 
 def tabelaDePrecos(request):

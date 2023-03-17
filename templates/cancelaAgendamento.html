@@ -5,13 +5,13 @@
 
 
 {% block title %}
-    Reybarbershop - Consultar agendamento
+    Reybarbershop - Cancelar agendamento
 {% endblock %}
 
 
 {% block content %}
 <div class="col-12">
-    <h2 class="contact-title">Consultar agendamento</h2>
+    <h2 class="contact-title">Concelar agendamento</h2>
     <br>
     {% if messages %}
             {% for message in messages %}
@@ -27,21 +27,34 @@
     <form class="form-contact contact_form" action="." method="post">
         {% csrf_token %}
         <div class="row">            
-            <div class="col-8">
+            <div class="col-sm-12">
                 <div class="form-group">
                     <input class="form-control" name="telCliente" id="telCliente" type="text" placeholder="Telefone: (99) 99999-9999" required>
                 </div>
-            </div><br>
+            </div><br><br>
 
-            <div class="col-8">
+            <div class="col-sm-6">
                 <div class="form-group">
                     <input class="form-control valid" name="dataAgendamento" id="dataAgendamento" type="date" required>
                 </div>
             </div>
 
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <select name="barbeiro" id="barbeiro" required>
+                        <option value="">Escolha o seu barbeiro</option>
+                        <option value="Ronaldo">Ronaldo</option>
+                        <option value="Vagner">Vagner</option>
+                        <option value="Gabriel">Gabriel</option>
+                  </select>
+                </div>
+            </div><br><br>
+
+            
+
             <div class="col-12">
                 <div class="form-group">
-                    <button type="submit" class="button button-contactForm boxed-btn">Consultar agendamento</button>
+                    <button type="submit" class="button button-contactForm boxed-btn">Cancelar agendamento</button>
                 </div>
             </div>          
         </div>

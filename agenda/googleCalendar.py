@@ -61,7 +61,7 @@ class GoogleCalendar:
                 events = calendar.service.events().list(calendarId=vagner).execute()
                 for event in events['items']:
                     if telCliente in event['summary'] and dataAgendamentoToCalendar in event['start']['dateTime']:
-                        calendar.service.events().delete(calendarId=ronaldo, eventId = event['id']).execute()
+                        calendar.service.events().delete(calendarId=vagner, eventId = event['id']).execute()
         else:
             events = calendar.service.events().list(calendarId=gabriel).execute()
             for event in events['items']:

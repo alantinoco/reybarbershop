@@ -35,7 +35,7 @@ def index(request):
                 )
                 dataAgendamentoToCalendar = str(dataAgendamento)
                 calendar.add_event(nomeCliente, telCliente, barbeiro, servico, dataAgendamentoToCalendar, horaAgendamento)
-                return redirect('index')
+                return redirect('sucesso')
     return render(request, 'agendamento.html')
 
 
@@ -68,24 +68,14 @@ def cancelaAgendamento(request):
             dataAgendamento = form.cleaned_data.get('dataAgendamento')
             dataAgendamentoToCalendar = str(dataAgendamento)
             calendar.del_event(telCliente, barbeiro ,dataAgendamentoToCalendar)
-
-            print(telCliente)
-            print(barbeiro)
-            print(dataAgendamento)
-            print(dataAgendamentoToCalendar)
-
             agendamentoParaCancelar = Agendamento.objects.filter(
                 dataAgendamento=dataAgendamento,
                 telCliente=telCliente, 
                 barbeiro=barbeiro
             )
             agendamentoParaCancelar.delete()
-            return redirect('index')
+            return redirect('sucesso')
     return render(request, 'cancelaAgendamento.html')
-
-
-    
-    return render(request, 'tabelaDePrecos.html')
 
 def tabelaDePrecos(request):
     return render(request, 'tabelaDePrecos.html')
@@ -100,3 +90,6 @@ def agendaVagner(request):
 
 def agendaGabriel(request):
     return render(request, 'gabriel.html')
+
+def sucesso(request):
+    return render(request, "sucesso.html")
